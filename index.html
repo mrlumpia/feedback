@@ -1,0 +1,105 @@
+<head>
+  <link rel="icon" href="https://cdn.discordapp.com/avatars/345715503710470144/ccaa68ec80c68cdb6cf6696789663a78.png?size=1024">
+  <title>MrLumpia | Feedback</title>
+</head>
+
+<form>      
+  <input name="name" id="name" type="text" class="feedback-input" placeholder="Discord Tag	" />   
+  <input name="email" id="email" type="text" class="feedback-input" placeholder="Email" />
+  <textarea name="text" id="comment" class="feedback-input" placeholder="Feedback"></textarea>
+  <input type="button" onclick="sendMessage()" value="SUBMIT"/>
+</form>
+
+<script> 
+  const tag = `${document.getElementById("name").value}`;
+  const email = `${document.getElementById("email").value}`;
+  const comment = `${document.getElementById("comment").value}`
+   
+    function sendMessage() {
+   
+       var request = new XMLHttpRequest();
+            request.open("POST", "https://discord.com/api/webhooks/875310633128710174/g17OJx5tuEUTdNlvk7bt6JeWwrt3G6YWEdnhGN0rNrcNjEuvdD3S997pUOyUZufSxhMS");
+            request.setRequestHeader('Content-type', 'application/json');	
+		
+		var params = {
+                
+                    "content": null,
+                    "embeds": [
+                      {
+                        "title": "Feedback Submitted",
+                        "color": 7445230,
+                        "fields": [
+                          {
+                            "name": "Discord Tag",
+                            "value": document.getElementById('name').value,
+                            "inline": true
+                          },
+                          {
+                            "name": "Email",
+                            "value": document.getElementById('email').value,
+                            "inline": true
+                          },
+                          {
+                            "name": "Feedback",
+                            "value": `\`\`\`${document.getElementById('comment').value}\`\`\``
+                          }
+                        ]
+                      }
+                    ]
+                  
+            }
+  
+              request.send(JSON.stringify(params));
+            alert("Your feedback has been submmitted and sent! Thanks for the feedback :3");
+  } 
+ </script>
+
+<style>
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+body { background:rgb(30,30,40); }
+form { max-width:420px; margin:50px auto; }
+
+.feedback-input {
+  color:white;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight:500;
+  font-size: 18px;
+  border-radius: 5px;
+  line-height: 22px;
+  background-color: transparent;
+  border:2px solid #66c3cc;
+  transition: all 0.3s;
+  padding: 13px;
+  margin-bottom: 15px;
+  width:100%;
+  box-sizing: border-box;
+  outline:0;
+}
+
+.feedback-input:focus { border:2px solid #CC4949; }
+
+textarea {
+  height: 150px;
+  line-height: 150%;
+  resize:vertical;
+}
+
+[type="button"] {
+  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  width: 100%;
+  background: #66c3cc;
+  border-radius:5px;
+  border:0;
+  cursor:pointer;
+  color:white;
+  font-size:24px;
+  padding-top:10px;
+  padding-bottom:10px;
+  transition: all 0.3s;
+  margin-top:-4px;
+  font-weight:700;
+}
+[type="button"]:hover { background: none; border-radius: #66c3cc; border: 2px solid #66c3cc; }
+
+</style>
